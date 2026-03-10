@@ -52,8 +52,13 @@ void PandaProsthetics::reset(const mc_control::ControllerResetData & reset_data)
     auto & panda_tibia = robot("panda_tibia");
     auto X_0_pt = panda_tibia.posW();
 
+    auto calibOffset = sva::PTransformd::Identity(); 
+    calibOffset.translation().z() = -0.43;
+    calibOffset.translation().y() = -0.1;
+    calibOffset.translation().x() = -0.025;
+
     auto X_pt_Right_interior = panda_tibia.frame("Right_interior").position() * X_0_pt.inv();
-    auto X_Right_interior_Front_exterior = sva::RotZ(mc_rtc::constants::PI / 2);
+    auto X_Right_interior_Front_exterior = calibOffset * sva::RotZ(mc_rtc::constants::PI / 2);
     auto X_Front_exterior_0_pf = X_0_pt * panda_femur.frame("Front_exterior").position().inv();
     auto X_0_pf = X_Front_exterior_0_pf * X_Right_interior_Front_exterior * X_pt_Right_interior * X_0_pt;
 

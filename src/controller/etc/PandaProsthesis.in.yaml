@@ -434,6 +434,7 @@ ObserverPipelines:
         #velocity: encoderFiniteDifferences
         #velocity: encoderVelocities
         velocity: control
+  # TODO: patch PandaTibia config when MainRobot is panda6 to remove encocer measurements
   - name: PandaTibia
     observers:
     - type: BodySensor
@@ -446,7 +447,7 @@ ObserverPipelines:
     - type: Encoder
       config:
         robot: panda_tibia
-        position: encoderValues
+        position: control # encoderValues
         #velocity: encoderFiniteDifferences
         # velocity: encoderVelocities
         velocity: control # encoderVelocities
@@ -465,8 +466,8 @@ states:
       - ["Load Saved Calibration", "LoadSavedCalibration"]
       - ["Start from current configuration", "StartFromCurrent"]
 
-Plugins: [BoneTagSerialPlugin]
-# Plugins: [ProtoTMRPlugin]
+# Plugins: [BoneTagSerialPlugin]
+Plugins: [ProtoTMRPlugin]
 
 transitions:
   - [ChooseMode, Simulation, Simulation, Auto]

@@ -26,6 +26,8 @@ static void ForAllVariants(Callback cb)
 {
   cb(ConnectRobot{"Panda2LIRMMDefault", "panda", "panda_link8"},
      ConnectTool{"BoneTag::Femur", "femur", "femur_base_link"});
+  cb(ConnectRobot{"Panda6LIRMMDefault", "panda", "panda_link8"},
+     ConnectTool{"BoneTag::Femur", "femur", "femur_base_link"});
   cb(ConnectRobot{"Panda7LIRMMDefault", "panda", "panda_link8"},
      ConnectTool{"BoneTag::Tibia", "tibia", "tibia_base_link"});
 
